@@ -1,0 +1,52 @@
+import matplotlib.patches as patches
+
+# Create a new plot
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Define the unit circle and plot it
+theta = np.linspace(0, 2 * np.pi, 100)
+x = np.cos(theta)
+y = np.sin(theta)
+ax.plot(x, y, color="black", linewidth=1)
+
+# Add colored circles for the flags' symbolic colors
+# Central white circle for unity
+ax.add_patch(patches.Circle((0, 0), 0.9, color='white', zorder=1))
+# Finnish blue circle slightly smaller for layered effect
+ax.add_patch(patches.Circle((0, 0), 0.6, color='#003580', zorder=2))  # Finnish blue
+# Danish red circle even smaller
+ax.add_patch(patches.Circle((0, 0), 0.3, color='#C8102E', zorder=3))  # Danish red
+# Small Swedish yellow center
+ax.add_patch(patches.Circle((0, 0), 0.1, color='#FECC00', zorder=4))  # Swedish yellow
+
+# Plot the Euler's identity points
+# -1 (e^(iπ))
+ax.plot(-1, 0, 'ro')  
+ax.text(-1.1, 0.1, r'$e^{i\pi} = -1$', fontsize=12, color='red')
+
+# 1
+ax.plot(1, 0, 'bo')  
+ax.text(1.05, 0.1, '1', fontsize=12, color='blue')
+
+# 0
+ax.plot(0, 0, 'go')  
+ax.text(0.05, 0.1, '0', fontsize=12, color='green')
+
+# Arrows and labels for Euler's identity
+ax.arrow(-1, 0, 1, 0, head_width=0.05, head_length=0.1, fc='k', ec='k')
+ax.text(-0.5, 0.1, r'$+1$', fontsize=12, color='black')
+
+ax.arrow(0, 0, -1, 0, head_width=0.05, head_length=0.1, fc='k', ec='k')
+ax.text(-0.5, -0.1, r'$=0$', fontsize=12, color='black')
+
+# Final plot adjustments
+ax.set_aspect('equal')
+ax.axhline(0, color='black', linewidth=0.5)
+ax.axvline(0, color='black', linewidth=0.5)
+ax.grid(color='gray', linestyle='--', linewidth=0.5)
+ax.set_title("Nordic Unity and Euler's Identity")
+ax.set_xlabel('Real Part')
+ax.set_ylabel('Imaginary Part')
+
+plt.show()
+
